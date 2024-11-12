@@ -50,6 +50,7 @@ def Genetic_Algorithm(generation_number, population_size):
     return Generation_next
 
 
+
 def final_loop():
     pop_col = []
     time_all = []

@@ -6,7 +6,8 @@ from Models.V4_transform_ZOI import transform
 
 population_size = 100
 df_ZOI = pd.read_csv(r'D:\SelTox_NP\ZOI\data\preprocessed_ZOI_dataset.csv')
-X = df_ZOI.drop(columns=['ZOI', 'reference', 'NP'])
+X = df_ZOI.drop(columns=['NP', 'Unnamed: 0'])
+uniq_bacteria_data = X.copy(deep=True)
 uniq_bacteria_data = X.drop_duplicates('Bacteria')
 
 """uniq value dataset"""
@@ -51,9 +52,10 @@ def bacteria_type(population_df):
 
 df_eee = bacteria_type(df_population)
 
-print(df_eee) 
-df_eee[0].to_csv('df_bacteria_type.csv')
-
+df_e = transform(df_eee[0])
+df_e.to_csv('df_bac_type_non_p.csv')
+df_e = transform(df_eee[1])
+df_e.to_csv('df_bac_type_p.csv')
 
 def fitness(df):
     n_path, path_gen = bacteria_type(df)
