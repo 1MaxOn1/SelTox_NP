@@ -11,7 +11,7 @@ uniq_bacteria_data = X.copy(deep=True)
 uniq_bacteria_data = X.drop_duplicates('Bacteria')
 
 """uniq value dataset"""
-uniq = list() # stores all the unique characters available in the dataset, it helps to make a new population with random parameters
+uniq = list() 
 for column in X.columns:
     uni = pd.unique(X[column])
     uniq.append(uni)
@@ -37,6 +37,11 @@ def population(size):
     return new
     
 df_population = population(population_size)
+
+uniq_bacs_path = X[(X['bac_type'] == 'opportunistic pathogen') | 
+                   (X['bac_type'] == 'pathogenic')]['Bacteria'].unique()
+uniq_bacs_non_path = X[(X['bac_type'] == 'non-pathogenic')]['Bacteria'].unique()
+
 
 
 def bacteria_type(population_df):
